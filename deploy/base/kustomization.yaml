@@ -4,9 +4,9 @@ resources:
   - deployment.yaml
   - service.yaml
 commonLabels:
-  app: notebook
+  app: authz
 configMapGenerator:
-  - name: notebook-config
+  - name: authz-config
     literals:
       - PORT=8080
 
