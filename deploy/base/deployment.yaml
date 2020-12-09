@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authz
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - image: jasonblanchard/k8s-pipeline-authz
+        name: authz
+        ports:
+          - containerPort: 8080
+        env:
+          - name: PORT
+            valueFrom:
+              configMapKeyRef:
+                name: authz-config
+                key: PORT
+          - name: VERSION
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.annotations['version']
